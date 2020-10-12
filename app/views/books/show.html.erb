@@ -1,0 +1,22 @@
+
+<!--プロフィール表示-->
+<!--<div class="profile-container">-->
+<!--  <h3 class="profile-name">< %= @user.name %></h3>-->
+<!--  < %= image_tag('sample-author1.jpg', class: "img-circle pull-left profile-thumb", style: "width: 100px; height: 100px; margin-top: 20px;") %>-->
+<!--</div>-->
+
+<h1>本の新規作成</h1>
+<%= form_with model:@book_new, url:'/books', local:true do |f| %>
+  <h4>title</h4>
+  <%= f.text_field :title %>
+  <h4>Opinion</h4>
+  <%= f.text_area :body %>
+  <%= f.submit 'Create Book' %>
+<% end %>
+
+<h1>詳細ページです</h1>
+<p><%= @book.title %></p>
+<p><%= @book.body %></p>
+
+<%= link_to "Edit", edit_book_path(@book) %>
+<%= link_to "Destroy", book_path(@book), method: :delete, data: { confirm: 'Are you sure?' } %>
