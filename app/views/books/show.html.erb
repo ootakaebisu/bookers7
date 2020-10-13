@@ -18,5 +18,18 @@
 <p><%= @book.title %></p>
 <p><%= @book.body %></p>
 
-<%= link_to "Edit", edit_book_path(@book) %>
-<%= link_to "Destroy", book_path(@book), method: :delete, data: { confirm: 'Are you sure?' } %>
+
+<ul>
+  <li>
+    <!--< % if @book.user == current_user %>-->
+      <%= link_to "Edit", edit_book_path(@book) %>
+    <!--< % end %>-->
+  </li>
+
+  <li>
+    <!--< % if @book.user == current_user %>-->
+      <%= button_to "Destroy", book_path(@book), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <!--< % end %>-->
+  </li>
+</ul>
+
