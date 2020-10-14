@@ -24,6 +24,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    correct_user(@user)
   end
 
   # def update
@@ -53,6 +54,12 @@ class UsersController < ApplicationController
 
   def user_params
       params.require(:user).permit(:name, :introduction, :image)
+  end
+  
+  def correct_user(user)
+    if current_user.id != user.id
+      redirect_to users_path
+    end
   end
 
 
