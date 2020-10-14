@@ -62,10 +62,8 @@
       <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
         <% if user_signed_in? %>
           <li class="">
-            <!--root_pathのところ、meshiterroだとuser_path(current_user.id)だけど、-->
-            <!--meshiterroはルートパス設定しているのが別のコントローラのshowページだからprefix使えるが-->
-            <!--bookersはroot_pathとしか設定しようがないのでは...?-->
-            <i class="fas home"><%= link_to "Home", root_path %></i>
+
+            <i class="fas home"><%= link_to "Home", user_path(current_user.id)%></i>
           </li>
           <li class="">
             <i class="fas fa-user"><%= link_to "Users", users_path %></i>
@@ -92,7 +90,7 @@
             <i class="fas fa-edit"><%= link_to "Sign_up", new_user_registration_path %></i>
           </li>
           <li class="">
-            <i class="fas fa-sign-in-alt"><%= link_to "login", new_user_registration_path %></i>
+            <i class="fas fa-sign-in-alt"><%= link_to "login", new_user_session_path %></i>
           </li>
 
         <% end %>

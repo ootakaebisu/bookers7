@@ -1,9 +1,10 @@
 <h1>本一覧</h1>
 <% @books.each do |book| %>
-  <span><%= book.title %></span>
-  <%= link_to "show", book_path(book.id) %>
-  <%= link_to "edit", edit_book_path(book.id) %>
-  <%= link_to "Destroy", '/books/#{book.id}', method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to book.title, book_path(book.id) %>
+  <span><%= book.body %><span>
+  <!--<　%= link_to "show", book_path(book.id) %>-->
+  <!--<　%= link_to "edit", edit_book_path(book.id) %>-->
+  <!--<　%= link_to "Destroy", '/books/#{book.id}', method: :delete, data: { confirm: 'Are you sure?' } %>-->
 <% end %>
 
 <h1>本の新規作成</h1>
