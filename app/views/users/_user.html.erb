@@ -1,9 +1,15 @@
-<h1>ユーザプロフィールです</h1>
-<p><%= current_user.name %></p>
-<p><%= current_user.introduction %></p>
-<%= link_to "リンク（仮）", edit_user_path(current_user.id) %>
+<div class="profile-container">
 
-<!--<h1>ユーザプロフィールです</h1>-->
-<!--<p>< %= @user.name %></p>-->
-<!--<p>< %= @user.introduction %></p>-->
-<!--< %= link_to "リンク（仮）", edit_user_path(@user) %>-->
+  <h1>ユーザプロフィールです</h1>
+
+  <%= attachment_image_tag user, :profile_image, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size: "100x100" %>
+
+  <h3 class="profile-name"><%= current_user.name %></h3>
+  <p><%= current_user.introduction %></p>
+
+  <!--< % if user.id == current_user.id %>-->
+      <p><%= link_to "プロフィール編集",edit_user_path(current_user.id) , class: "pull-right" %></p>
+  <!--< % end %>-->
+
+  <!--< %= link_to "リンク（仮）", edit_user_path(current_user.id) %>-->
+</div>
