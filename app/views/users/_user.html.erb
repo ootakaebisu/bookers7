@@ -1,0 +1,9 @@
+<h1>ユーザプロフィールです</h1>
+<p><%= current_user.name %></p>
+<p><%= current_user.introduction %></p>
+<%= link_to "リンク（仮）", edit_user_path(current_user.id) %>
+
+<!--<h1>ユーザプロフィールです</h1>-->
+<!--<p>< %= @user.name %></p>-->
+<!--<p>< %= @user.introduction %></p>-->
+<!--< %= link_to "リンク（仮）", edit_user_path(@user) %>-->

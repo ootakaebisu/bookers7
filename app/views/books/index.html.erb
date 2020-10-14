@@ -11,7 +11,4 @@
 
 <%= render 'books/newbook', book: @book %>
 
-<h1>ユーザプロフィールです</h1>
-<p><%= current_user.name %></p>
-<p><%= current_user.introduction %></p>
-<%= link_to "リンク（仮）", edit_user_path(current_user.id) %>
+<%= render 'users/user', user: @user %>
