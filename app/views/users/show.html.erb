@@ -6,14 +6,8 @@
   <span><%= book.body %><span>
 <% end %>
 
-<h4>本の新規作成</h4>
-<%= form_with model:@book_new, url:'/books', local:true do |f| %>
-  <h4>title</h4>
-  <%= f.text_field :title %>
-  <h4>Opinion</h4>
-  <%= f.text_area :body %>
-  <%= f.submit 'Create Book' %>
-<% end %>
+<%= render 'books/newbook', book: @book %>
+
 
 <h1>ユーザプロフィールです</h1>
 <p><%= @user.name %></p>

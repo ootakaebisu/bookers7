@@ -1,12 +1,20 @@
 class UsersController < ApplicationController
 
+  before_action :authenticate_user!
+
   def index
     @users = User.all
-    @book_new = Book.new
+    @book = Book.new
+
+    # if @book_new.save
+    #   redirect_to book_path(book.id)
+    # else
+    #   render :index
+    # end
   end
 
   def show
-    @book_new = Book.new
+    @book = Book.new
     # 自分の投稿だけと言う制限が必要
     # プロフ表示用
     @user = User.find(params[:id])

@@ -1,3 +1,4 @@
+
 <h1>ユーザ一覧</h1>
 
 <% @users.each do |user| %>
@@ -5,16 +6,11 @@
   <%= link_to "show", user_path(user.id) %>
 <% end %>
 
-<h1>本の新規作成</h1>
-<%= form_with model:@book_new, url:'/books', local:true do |f| %>
-  <h4>title</h4>
-  <%= f.text_field :title %>
-  <h4>Opinion</h4>
-  <%= f.text_area :body %>
-  <%= f.submit 'Create Book' %>
-<% end %>
+
+<%= render 'books/newbook', book: @book %>
+
 
 <h1>ユーザプロフィールです</h1>
-<p>< %= @user.name %></p>
-<p>< %= @user.introduction %></p>
-< %= link_to "リンク（仮）", edit_user_path(@user) %>
+<p><%= current_user.name %></p>
+<p><%= current_user.introduction %></p>
+<%= link_to "リンク（仮）", edit_user_path(current_user.id) %>

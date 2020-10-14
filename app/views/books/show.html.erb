@@ -1,18 +1,17 @@
-
-<!--プロフィール表示-->
-<!--<div class="profile-container">-->
-<!--  <h3 class="profile-name">< %= @user.name %></h3>-->
-<!--  < %= image_tag('sample-author1.jpg', class: "img-circle pull-left profile-thumb", style: "width: 100px; height: 100px; margin-top: 20px;") %>-->
-<!--</div>-->
-
-<h1>本の新規作成</h1>
-<%= form_with model:@book_new, url:'/books', local:true do |f| %>
-  <h4>title</h4>
-  <%= f.text_field :title %>
-  <h4>Opinion</h4>
-  <%= f.text_area :body %>
-  <%= f.submit 'Create Book' %>
+<% if flash[:notice] %>
+  <div class="flash">
+    <%= flash[:notice] %>
+  </div>
 <% end %>
+
+
+<div class="profile-container">
+  <h3 class="profile-name"><%= current_user.name %></h3>
+  <!--< %= image_tag('sample-author1.jpg', class: "img-circle pull-left profile-thumb", style: "width: 100px; height: 100px; margin-top: 20px;") %>-->
+</div>
+
+<%= render 'books/newbook', book: Book.new %>
+<!--コントローラ直書き-->
 
 <h1>詳細ページです</h1>
 <p><%= @book.title %></p>
@@ -21,15 +20,15 @@
 
 <ul>
   <li>
-    <!--< % if @book.user == current_user %>-->
+    <% if @book.user == current_user %>
       <%= link_to "Edit", edit_book_path(@book) %>
-    <!--< % end %>-->
+    <% end %>
   </li>
 
   <li>
-    <!--< % if @book.user == current_user %>-->
+    <% if @book.user == current_user %>
       <%= button_to "Destroy", book_path(@book), method: :delete, data: { confirm: 'Are you sure?' } %>
-    <!--< % end %>-->
+    <% end %>
   </li>
 </ul>
 
