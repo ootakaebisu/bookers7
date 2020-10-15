@@ -5,13 +5,13 @@ class ApplicationController < ActionController::Base
     user_path(resource) # ログイン後に遷移するpathを設定
   end
 
-  # def after_sign_up_path_for(resource)
-  #   edit_user_registration # サイン後に遷移するpathを設定
-  # end
+  def after_sign_up_path_for(resource)
+     user_path(resource)# サイン後に遷移するpathを設定
+  end
 
-  # def after_sign_out_path_for(resource)
-  #   root_path # ログアウト後に遷移するpathを設定
-  # end
+  def after_sign_out_path_for(resource)
+    root_path # ログアウト後に遷移するpathを設定
+  end
 
 
   before_action :configure_permitted_parameters, if: :devise_controller?
