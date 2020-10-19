@@ -13,8 +13,20 @@
 
     <!--<a href ='/users/sign_in'><button type="button" class="btn btn-info col-xs-10 col-xs-offset-1">Log in</button></a>-->
     <!--<a href ='/users/sign_up'><button type="button" class="btn btn-success col-xs-10 col-xs-offset-1">Sign Up</button></a>-->
-    <%= button_to "Sign_up", new_user_registration_path, method: :get %>
-    <%= button_to "login", new_user_session_path, method: :get %>
+    <!--<　% if user_signed_in? %>-->
+    <!--  <　%= button_to "Sign_up", user_path(@user.id), method: :get %>-->
+    <!--<　% else %>-->
+    <!--< %= button_to "Sign_up", new_user_registration_path, method: :get %>-->
+
+    <!--<　% end %>-->
+
+    <!--<　% if user_signed_in? %>-->
+    <!--  <　%= button_to "login", user_path(@user.id), method: :get %>-->
+    <!--<　% else %>-->
+    <!--< %= button_to "login", new_user_session_path, method: :get %>-->
+    <%= link_to("Log in", new_user_session_path, {class: "btn"}) %>
+    <!--<　% end %>-->
+    <%= link_to("Sign Up", new_user_registration_path, {class: "btn"}) %>
 
 
   </div>

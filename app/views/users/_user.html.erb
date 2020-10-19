@@ -1,15 +1,21 @@
 <div class="profile-container">
 
-  <h1>ユーザプロフィールです</h1>
+  <h2>User info</h1>
 
   <%= attachment_image_tag user, :profile_image, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size: "100x100" %>
 
-  <h3 class="profile-name"><%= current_user.name %></h3>
-  <p><%= current_user.introduction %></p>
+  <h3 class="profile-name"><%= user.name %></h3>
+  <p><%= user.introduction %></p>
 
-  <!--< % if user.id == current_user.id %>-->
-      <p><%= link_to "プロフィール編集",edit_user_path(current_user.id) , class: "pull-right" %></p>
-  <!--< % end %>-->
+
+  <% if user.id == current_user.id %>
+    <!--アイコンだけ入れたいときはclassに-->
+    <%= link_to("", edit_user_path(current_user.id), {class: "pull-right, fab fa-wrench"}) %>
+  <% end %>
 
   <!--< %= link_to "リンク（仮）", edit_user_path(current_user.id) %>-->
 </div>
+
+
+
+

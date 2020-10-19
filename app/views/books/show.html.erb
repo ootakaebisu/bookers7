@@ -1,31 +1,82 @@
+<!--< % if flash[:notice] %>-->
+<!--  <div class="flash">-->
+<!--    < %= flash[:notice] %>-->
+<!--  </div>-->
+<!--< % end %>-->
+
+<!--<div class="row">-->
+<!--  <div class="col-lg-3">-->
+<!--    < %= render 'users/user', user: @user %>-->
+<!--    < %= render 'books/newbook', book: Book.new %>-->
+    <!--コントローラ直書き-->
+<!--  </div>-->
+
+<!--  <div class="col-lg-9">-->
+<!--    <h2>Book detail</h2>-->
+<!--    <p>< %= @book.title %></p>-->
+<!--    <p>< %= @book.body %></p>-->
+
+
+<!--    <ul>-->
+<!--      <li>-->
+<!--        < % if @book.user == current_user %>-->
+<!--          < %= link_to "Edit", edit_book_path(@book) %>-->
+<!--        < % end %>-->
+<!--      </li>-->
+
+<!--      <li>-->
+<!--        < % if @book.user == current_user %>-->
+<!--          < %= button_to "Destroy", book_path(@book), method: :delete, data: { confirm: 'Are you sure?' } %>-->
+<!--        < % end %>-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--    < %= link_to @user.name, user_path %>-->
+<!--  </div>-->
+<!--</div>-->
+
+
 <% if flash[:notice] %>
   <div class="flash">
     <%= flash[:notice] %>
   </div>
 <% end %>
 
-<%= render 'users/user', user: @user %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-3">
+      <%= render 'users/user', user: @user %>
+      <%= render 'books/newbook', book: @book %>
+    </div>
+
+    <div class="col-xs-9">
+      <h2>Book detail</h2>
+
+      <table class="table">
 
 
-<%= render 'books/newbook', book: Book.new %>
-<!--コントローラ直書き-->
+      <tbody>
+        <tr>
+          <th scope="row"><%= attachment_image_tag @user, :profile_image, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size: "40x40" %></th>
+          <td><%= link_to @book_get.title, book_path %></td>
+          <td><%= @book_get.body %></td>
 
-<h1>詳細ページです</h1>
-<p><%= @book.title %></p>
-<p><%= @book.body %></p>
+          <td>
+            <% if @book_get.user == current_user %>
+              <%= link_to "Edit", edit_book_path(@book_get) %>
+            <% end %>
+          </td>
+          <td>
+            <% if @book_get.user == current_user %>
+              <!--< %= button_to "Destroy", book_path(@book_get), method: :delete, data: { confirm: 'Are you sure?' } %>-->
+              <%= link_to("Destroy", book_path(@book_get), { method: :delete, data: {confirm: "Are you sure?"}, class: "btn"}) %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+         <%= link_to @user.name, user_path(@user) %>
+    </div>
 
+  </div>
+</div>
 
-<ul>
-  <li>
-    <% if @book.user == current_user %>
-      <%= link_to "Edit", edit_book_path(@book) %>
-    <% end %>
-  </li>
-
-  <li>
-    <% if @book.user == current_user %>
-      <%= button_to "Destroy", book_path(@book), method: :delete, data: { confirm: 'Are you sure?' } %>
-    <% end %>
-  </li>
-</ul>
 

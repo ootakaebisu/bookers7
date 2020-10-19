@@ -19,6 +19,7 @@ class UsersController < ApplicationController
     # 自分の投稿だけと言う制限が必要
     # プロフ表示用
     @user = User.find(params[:id])
+    # @user = User.find()
     @books = @user.books
     # @books = Book.all
   end

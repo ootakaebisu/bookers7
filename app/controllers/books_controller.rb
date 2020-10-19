@@ -10,9 +10,9 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.find(params[:id])
-    @book_new = Book.new
-    @user = User.find(current_user.id)
+    @book_get = Book.find(params[:id])
+    @book = Book.new
+    @user = User.find(@book_get.user_id)
   end
 
   def new
@@ -31,7 +31,7 @@ class BooksController < ApplicationController
         redirect_to book_path(@book)
     else
         #indexアクションと同じ
-        @books = Book.all
+        # @books = Book.all
         render :index
     end
   end

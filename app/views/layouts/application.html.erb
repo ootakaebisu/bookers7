@@ -57,12 +57,12 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav4" aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="#">Bookers</a>
+    <!--<a class="navbar-brand" href="#">Bookers</a>-->
+    <span class="navbar-brand">Bookers</span>
     <div class="collapse navbar-collapse justify-content-end">
       <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
         <% if user_signed_in? %>
           <li class="">
-
             <i class="fas home"><%= link_to "Home", user_path(current_user.id)%></i>
           </li>
           <li class="">
@@ -72,7 +72,9 @@
             <i class="fas fa-book"><%= link_to "Books", books_path %></i>
           </li>
           <li class="">
-            <i class="fas fa-sign-in-alt"><%= button_to "logout", destroy_user_session_path, method: :delete %></i>
+  <!--実働時エラー発生箇所-->
+            <!--<i class="fas fa-sign-in-alt"><　%= button_to "logout", destroy_user_session_path, method: :delete %></i>-->
+            <i class="fas fa-sign-in-alt"><%= link_to("logout", destroy_user_session_path, {method: :delete}) %></i>
           </li>
 
           <!--<li class="">-->
@@ -87,7 +89,7 @@
             <i class="fas fa-link"><%= link_to "About", home_about_path %></i>
           </li>
           <li class="">
-            <i class="fas fa-edit"><%= link_to "sign up", new_user_registration_path %></i>
+            <i class="fas fa-edit"><%= link_to "Sign up", new_user_registration_path %></i>
           </li>
           <li class="">
             <i class="fas fa-sign-in-alt"><%= link_to "login", new_user_session_path %></i>
@@ -99,16 +101,16 @@
     </nav>
 
 
-    <div class="container">
 
-        <%= yield %>
+
+      <%= yield %>
+
+
+
         <div align="right">CopyRight Infratop.inc</d>
-
-
 
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-    </div>
   </body>
 </html>
