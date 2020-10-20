@@ -54,26 +54,29 @@
       <table class="table">
 
 
-      <tbody>
-        <tr>
-          <th scope="row"><%= attachment_image_tag @user, :profile_image, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size: "40x40" %></th>
-          <td><%= link_to @book_get.title, book_path %></td>
-          <td><%= @book_get.body %></td>
-
-          <td>
-            <% if @book_get.user == current_user %>
-              <%= link_to "Edit", edit_book_path(@book_get) %>
-            <% end %>
-          </td>
-          <td>
-            <% if @book_get.user == current_user %>
-              <!--< %= button_to "Destroy", book_path(@book_get), method: :delete, data: { confirm: 'Are you sure?' } %>-->
-              <%= link_to("Destroy", book_path(@book_get), { method: :delete, data: {confirm: "Are you sure?"}, class: "btn"}) %>
-            <% end %>
-          </td>
-        </tr>
-      </tbody>
-         <%= link_to @user.name, user_path(@user) %>
+        <tbody>
+          <tr>
+            <th scope="row">
+              <%= attachment_image_tag @user, :profile_image, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size: "40x40" %>
+              <%= link_to @user.name, user_path(@user) %>
+            </th>
+            <td><%= link_to @book_get.title, book_path %></td>
+            <td><%= @book_get.body %></td>
+  
+            <td>
+              <% if @book_get.user == current_user %>
+                <%= link_to "Edit", edit_book_path(@book_get) %>
+              <% end %>
+            </td>
+            <td>
+              <% if @book_get.user == current_user %>
+                <!--< %= button_to "Destroy", book_path(@book_get), method: :delete, data: { confirm: 'Are you sure?' } %>-->
+                <%= link_to("Destroy", book_path(@book_get), { method: :delete, data: {confirm: "Are you sure?"}, class: "btn"}) %>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table
     </div>
 
   </div>
