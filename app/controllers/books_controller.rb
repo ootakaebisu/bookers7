@@ -21,6 +21,7 @@ class BooksController < ApplicationController
   end
 
   def create
+    @user = User.find(current_user.id)
     @book = Book.new(book_params)
     # {Book: title:"たいとる", body: "ボディ", user_id: nil.....}
     @book.user_id = current_user.id
@@ -31,7 +32,7 @@ class BooksController < ApplicationController
         redirect_to book_path(@book)
     else
         #indexアクションと同じ
-        # @books = Book.all
+        @books = Book.all
         render :index
     end
   end

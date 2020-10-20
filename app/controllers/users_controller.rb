@@ -60,7 +60,7 @@ class UsersController < ApplicationController
 
   def correct_user(user)
     if current_user.id != user.id
-      redirect_to users_path
+      redirect_to user_path(current_user)
     end
   end
 

@@ -9,12 +9,12 @@
 <!--    </div>-->
 <!--  < % end %>-->
 
-<h4>New book</h4>
+<h2>New book</h2>
 <%= form_for(book) do |f| %>
 <%= render 'layouts/error_messages', model: book %>
   <h4>title</h4>
   <%= f.text_field :title %>
   <h4>Opinion</h4>
   <%= f.text_area :body %>
-  <%= f.submit 'Create Book' , class: "btn btn-info" %>
+  <%= f.submit 'Create Book' , class: "btn btn-primary" %>
 <% end %>
