@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -27,95 +25,68 @@
   </head>
 
   <body>
-
-      <!--参考-->
-
-    <!--<nav class="navbar navbar-expand-sm navbar-dark bg-dark mt-3 mb-3">-->
-    <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav4" aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation">-->
-    <!--    <span class="navbar-toggler-icon"></span>-->
-    <!--</button>-->
-    <!--<a class="navbar-brand" href="#">Bookers</a>-->
-    <!--<div class="collapse navbar-collapse justify-content-end">-->
-    <!--    <ul class="navbar-nav">-->
-    <!--        <li class="nav-item active">-->
-    <!--            <i class="fas home">< %= link_to "Home", root_path %></i>-->
-    <!--            <a class="nav-link" href="#"><i class="fas fa-home"></i>Home</a>-->
-    <!--        </li>-->
-    <!--        <li class="nav-item">-->
-    <!--            <i class="fas fa-link">< %= link_to "About", homes_about_path %></i>-->
-    <!--            <a class="nav-link" href="#"><i class="fas fa-link"></i>About</a>-->
-    <!--        </li>-->
-    <!--        <li class="nav-item">-->
-    <!--            <i class="fas fa-edit">< %= link_to "Sign_up", new_user_registration_path %></i>-->
-    <!--            <a class="nav-link" href="#"><i class="fas fa-edit"></i>Sign up</a>-->
-    <!--        </li>-->
-    <!--        <li class="nav-item">-->
-    <!--          <i class="fas fa-sign-in-alt">< %= link_to "login", new_user_session_path %><i class="fas fa-link">-->
-    <!--            <a class="nav-link" href="#"><i class="fas fa-sign-in-alt"></i>login</a>-->
-    <!--        </li>-->
-    <!--        <li>-->
-    <!--            < %= link_to "Log out", destroy_user_session_path, method: :delete %>-->
-    <!--        </li>-->
-    <!--    </ul>-->
-    <!--</div>-->
-    <!--</nav>-->
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class ="container">
+        <nav class="nav navber-nav navbar-left"><span class="bookers">Bookers</span></nav>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+              <li class="">
+                <!--<a class="glyphicon glyphicon-home home" href="/">< %= link_to "Home", user_path(current_user.id)%></a>-->
+                <%= link_to(" Home", user_path(current_user.id), {class: "glyphicon glyphicon-home home"}) %>
+              </li>
+              <li class="">
+                <!--< %= link_to "Users", users_path %>-->
+                <%= link_to(" Users", users_path, {class: "glyphicon glyphicon-user users"}) %>
+              </li>
+              <li class="">
+                <!--< %= link_to "Books", books_path %>-->
+                <%= link_to(" Books", books_path, {class: "glyphicon glyphicon-book books"}) %>
+              </li>
+              <li class="">
+                <!--<i class="fas fa-sign-in-alt"><　%= button_to "logout", destroy_user_session_path, method: :delete %></i>-->
+                <%= link_to(" logout", destroy_user_session_path, {method: :delete, class: "glyphicon glyphicon-log-out logout"}) %>
+              </li>
 
 
-    <!--実装-->
+            <% else %>
+              <li class="">
+                <!--< %= link_to "Home", root_path %>-->
+                <%= link_to(" Home", root_path, {class: "glyphicon glyphicon-home home"}) %>
+              </li>
+              <li class="">
+                <!--< %= link_to "About", home_about_path %>-->
+                <%= link_to(" About", home_about_path, {class: "glyphicon glyphicon-link link"}) %>
+              </li>
+              <li class="">
+                <!--< %= link_to "Sign up", new_user_registration_path %>-->
+                <%= link_to(" Sign up", new_user_registration_path, {class: "glyphicon glyphicon-edit sign_up"}) %>
+              </li>
+              <li class="">
+                <!--< %= link_to "login", new_user_session_path %>-->
+                <%= link_to(" login", new_user_session_path, {class: "glyphicon glyphicon-log-in sign_in"}) %>
+              </li>
 
-
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark mt-3 mb-3">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav4" aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <!--<a class="navbar-brand" href="#">Bookers</a>-->
-    <span class="navbar-brand">Bookers</span>
-    <div class="collapse navbar-collapse justify-content-end">
-      <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
-        <% if user_signed_in? %>
-          <li class="">
-            <i class="fas home"><%= link_to "Home", user_path(current_user.id)%></i>
-          </li>
-          <li class="">
-            <i class="fas fa-user"><%= link_to "Users", users_path %></i>
-          </li>
-          <li class="">
-            <i class="fas fa-book"><%= link_to "Books", books_path %></i>
-          </li>
-          <li class="">
-  <!--実働時エラー発生箇所-->
-            <!--<i class="fas fa-sign-in-alt"><　%= button_to "logout", destroy_user_session_path, method: :delete %></i>-->
-            <i class="fas fa-sign-in-alt"><%= link_to("logout", destroy_user_session_path, {method: :delete}) %></i>
-          </li>
-
-          <!--<li class="">-->
-            <!-- ↓以下のコードは、5章で正しいroutingに書き直します。 -->
-          <!--  < %= link_to 'マイページ', "#" %>-->
-          <!--</li>-->
-        <% else %>
-          <li class="">
-            <i class="fas home"><%= link_to "Home", root_path %></i>
-          </li>
-          <li class="">
-            <i class="fas fa-link"><%= link_to "About", home_about_path %></i>
-          </li>
-          <li class="">
-            <i class="fas fa-edit"><%= link_to "Sign up", new_user_registration_path %></i>
-          </li>
-          <li class="">
-            <i class="fas fa-sign-in-alt"><%= link_to "login", new_user_session_path %></i>
-          </li>
-
-        <% end %>
-      </ul>
-    </div>
-    </nav>
-      <div class="container">
-      <%= yield %>
+            <% end %>
+          </ul>
+        </nav>
       </div>
+    </header>
 
+    <div class="body">
 
-        <div align="right">CopyRight Infratop.inc</div>
+      <%= yield %>
+
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class ="col-xs-3 col-xs-offset-9">
+            <p>CopyRight Infratop.inc</p>
+          </div>
+      </div>
+    </footer>
 
 
   </body>
