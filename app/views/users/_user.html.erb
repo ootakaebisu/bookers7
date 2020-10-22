@@ -1,0 +1,38 @@
+
+ <div>
+  <h2>User info</h2>
+
+  <%= attachment_image_tag user, :profile_image, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg", size: "100x100" %>
+
+  <table class="table">
+    <tr>
+      <td>name</td>
+      <td><%= user.name %></td>
+    </tr>
+    <tr>
+      <td>introduction</td>
+      <td><%= user.introduction %></td>
+    </tr>
+
+  <!--<h3 class="profile-name">< %= user.name %></h3>-->
+  <!--<p>< %= user.introduction %></p>-->
+  </table>
+
+
+  <div class="field">
+    <% if user.id == current_user.id %>
+      <!--アイコンだけ入れたいときはclassに-->
+      <%= link_to("", edit_user_path(current_user.id), {class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench"}) %>
+    <% else %>
+      <%= link_to("", user_path(current_user.id), {class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench"}) %>
+    <% end %>
+  </div>
+
+</div>
+
+  <!--< %= link_to "リンク（仮）", edit_user_path(current_user.id) %>-->
+
+
+
+
+

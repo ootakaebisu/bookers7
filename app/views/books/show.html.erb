@@ -1,22 +1,87 @@
+<!--< % if flash[:notice] %>-->
+<!--  <div class="flash">-->
+<!--    < %= flash[:notice] %>-->
+<!--  </div>-->
+<!--< % end %>-->
 
-<!--プロフィール表示-->
-<!--<div class="profile-container">-->
-<!--  <h3 class="profile-name">< %= @user.name %></h3>-->
-<!--  < %= image_tag('sample-author1.jpg', class: "img-circle pull-left profile-thumb", style: "width: 100px; height: 100px; margin-top: 20px;") %>-->
+<!--<div class="row">-->
+<!--  <div class="col-lg-3">-->
+<!--    < %= render 'users/user', user: @user %>-->
+<!--    < %= render 'books/newbook', book: Book.new %>-->
+    <!--コントローラ直書き-->
+<!--  </div>-->
+
+<!--  <div class="col-lg-9">-->
+<!--    <h2>Book detail</h2>-->
+<!--    <p>< %= @book.title %></p>-->
+<!--    <p>< %= @book.body %></p>-->
+
+
+<!--    <ul>-->
+<!--      <li>-->
+<!--        < % if @book.user == current_user %>-->
+<!--          < %= link_to "Edit", edit_book_path(@book) %>-->
+<!--        < % end %>-->
+<!--      </li>-->
+
+<!--      <li>-->
+<!--        < % if @book.user == current_user %>-->
+<!--          < %= button_to "Destroy", book_path(@book), method: :delete, data: { confirm: 'Are you sure?' } %>-->
+<!--        < % end %>-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--    < %= link_to @user.name, user_path %>-->
+<!--  </div>-->
 <!--</div>-->
 
-<h1>本の新規作成</h1>
-<%= form_with model:@book_new, url:'/books', local:true do |f| %>
-  <h4>title</h4>
-  <%= f.text_field :title %>
-  <h4>Opinion</h4>
-  <%= f.text_area :body %>
-  <%= f.submit 'Create Book' %>
+<div class="container">
+<% if flash[:notice] %>
+  <div class="flash">
+    <%= flash[:notice] %>
+  </div>
 <% end %>
 
-<h1>詳細ページです</h1>
-<p><%= @book.title %></p>
-<p><%= @book.body %></p>
 
-<%= link_to "Edit", edit_book_path(@book) %>
-<%= link_to "Destroy", book_path(@book), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <div class="row">
+    <div class="col-xs-3">
+      <%= render 'users/user', user: @user %><br><br>
+      <%= render 'books/newbook', book: @book %>
+    </div>
+
+    <div class="col-xs-9">
+      <h2>Book detail</h2>
+
+      <table class="table">
+
+
+        <tbody>
+          <tr>
+            <td scope="row">
+                <%= link_to user_path(@user) do %>
+                <%= attachment_image_tag @user, :profile_image, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg", size: "40x40" %>
+                <% end %><br><br>
+                <%= link_to @user.name, user_path(@user) %>
+            </td>
+            <td><%= link_to @book_get.title, book_path %></td>
+            <td><%= @book_get.body %></td>
+
+            <td>
+              <% if @book_get.user == current_user %>
+                <%= link_to "Edit", edit_book_path(@book_get), class: "btn btn-sm btn-success" %>
+              <% end %>
+            </td>
+            <td>
+              <% if @book_get.user == current_user %>
+                <!--< %= button_to "Destroy", book_path(@book_get), method: :delete, data: { confirm: 'Are you sure?' } %>-->
+                <%= link_to("Destroy", book_path(@book_get), { method: :delete, data: {confirm: "Are you sure?"}, class: "btn  btn-sm btn-danger"}) %>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+

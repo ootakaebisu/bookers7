@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -12,72 +11,83 @@
 
     <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">-->
     <title>ブッカーズ</title>
+
+    <!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
+    <!--<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>-->
+    <!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>-->
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'  %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class ="container">
+        <nav class="nav navber-nav navbar-left"><span class="bookers">Bookers</span></nav>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+              <li class="">
+                <!--<a class="glyphicon glyphicon-home home" href="/">< %= link_to "Home", user_path(current_user.id)%></a>-->
+                <%= link_to(" Home", user_path(current_user.id), {class: "glyphicon glyphicon-home home"}) %>
+              </li>
+              <li class="">
+                <!--< %= link_to "Users", users_path %>-->
+                <%= link_to(" Users", users_path, {class: "glyphicon glyphicon-user users"}) %>
+              </li>
+              <li class="">
+                <!--< %= link_to "Books", books_path %>-->
+                <%= link_to(" Books", books_path, {class: "glyphicon glyphicon-book books"}) %>
+              </li>
+              <li class="">
+                <!--<i class="fas fa-sign-in-alt"><　%= button_to "logout", destroy_user_session_path, method: :delete %></i>-->
+                <%= link_to(" logout", destroy_user_session_path, {method: :delete, class: "glyphicon glyphicon-log-out logout"}) %>
+              </li>
 
-    <!--<nav class="navbar navbar-expand-sm navbar-dark bg-dark mt-3 mb-3">-->
-    <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav4" aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation">-->
-    <!--    <span class="navbar-toggler-icon"></span>-->
-    <!--</button>-->
-    <!--<a class="navbar-brand" href="#">Bookers</a>-->
-    <!--<div class="collapse navbar-collapse justify-content-end">-->
-    <!--    <ul class="navbar-nav">-->
-    <!--        <li class="nav-item active">-->
-    <!--            <a class="nav-link" href="#"><i class="fas fa-home"></i>Home</a>-->
-    <!--        </li>-->
-    <!--        <li class="nav-item">-->
-    <!--            < %= link_to "About", homes_about_path %>-->
-    <!--            <a class="nav-link" href="#"><i class="fas fa-link"></i>About</a>-->
-    <!--        </li>-->
-    <!--        <li class="nav-item">-->
-    <!--            <a class="nav-link" href="#"><i class="fas fa-edit"></i>Sign up</a>-->
-    <!--        </li>-->
-    <!--        <li class="nav-item">-->
-    <!--            <a class="nav-link" href="#"><i class="fas fa-sign-in-alt"></i>login</a>-->
-    <!--        </li>-->
-    <!--        <li>-->
-    <!--            < %= link_to "Log out", destroy_user_session_path, method: :delete %>-->
-    <!--        </li>-->
-    <!--    </ul>-->
-    <!--</div>-->
-    <!--</nav>-->
 
-    <div id="slidemenu">
-    <ul>
-    <!--<ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">-->
-      <% if user_signed_in? %>
-        <li class="">
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        </li>
-        <li class="">
-          <%= link_to '投稿フォーム', new_book_path %>
-        </li>
-        <li class="">
-          <!-- ↓以下のコードは、5章で正しいroutingに書き直します。 -->
-          <%= link_to 'マイページ', "#" %>
-        </li>
-      <% else %>
-        <li class="">
-          <%= link_to "新規登録", new_user_registration_path %>
-        </li>
-        <li class="">
-          <%= link_to "ログイン", new_user_session_path %>
-        </li>
-      <% end %>
-    </ul>
+            <% else %>
+              <li class="">
+                <!--< %= link_to "Home", root_path %>-->
+                <%= link_to(" Home", root_path, {class: "glyphicon glyphicon-home home"}) %>
+              </li>
+              <li class="">
+                <!--< %= link_to "About", home_about_path %>-->
+                <%= link_to(" About", home_about_path, {class: "glyphicon glyphicon-link link"}) %>
+              </li>
+              <li class="">
+                <!--< %= link_to "Sign up", new_user_registration_path %>-->
+                <%= link_to(" Sign up", new_user_registration_path, {class: "glyphicon glyphicon-edit sign_up"}) %>
+              </li>
+              <li class="">
+                <!--< %= link_to "login", new_user_session_path %>-->
+                <%= link_to(" login", new_user_session_path, {class: "glyphicon glyphicon-log-in sign_in"}) %>
+              </li>
+
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <div class="body">
+
+      <%= yield %>
+
     </div>
 
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class ="col-xs-3 col-xs-offset-9">
+            <p>CopyRight Infratop.inc</p>
+          </div>
+      </div>
+    </footer>
 
-    <!--<div class="container">-->
-
-        <%= yield %>
-        <div align="right">CopyRight Infratop.inc</d>
-
-        <!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
-        <!--<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>-->
-        <!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>-->
-    <!--</div>-->
 
   </body>
 </html>
